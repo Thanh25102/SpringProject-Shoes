@@ -14,44 +14,47 @@ import org.springframework.web.servlet.ModelAndView;
 import com.buimanhthanh.dto.CustomersDTO;
 import com.buimanhthanh.service.LoginService;
 
-
 @Controller
 public class LoginController {
 	@Autowired
 	private LoginService loginService;
-	
-    @GetMapping(value = {"/login"})
-    public String login() {
-        return "loginLayout";
-    }
 
-    @GetMapping(value={"/register"})
-    public ModelAndView register(){
-    	ModelAndView mv = new ModelAndView();
-    	mv.addObject("user", new CustomersDTO());
-    	mv.setViewName("registerLayout");
-        return mv;
-    }
+	@GetMapping(value = { "/login" })
+	public String login() {
+		return "loginLayout";
+	}
 
-    @PostMapping(value={"/register"})
-    public String register(@ModelAttribute(value="user") @Valid CustomersDTO customersDTO,BindingResult result,Model model){
-    	String errMsg = customersDTO.isValidPasswordConfirm() ? null : "Password isn't the same";
-    	model.addAttribute("errMsg", errMsg);
-    	if(result.hasErrors() || errMsg !=null) {
-    		return "registerLayout";
-    	}else {
-    		if(loginService.register(customersDTO)) {
-        		return "redirect:/login";
-    		}else {
-    			errMsg = "username is exist";
-        		return "registerLayout";
-    		}
-    	}	
-    }
+	@GetMapping(value = { "/register" })
+	public ModelAndView register() {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("user", new CustomersDTO());
+		mv.setViewName("registerLayout");
+		return mv;
+	}
 
-    
-    @GetMapping(value={"/forgot-password"})
-    public String forgotPassword(){
-        return "forgotPasswordLayout";
-    }
+	@PostMapping(value = { "/register" })
+	public String register(@ModelAttribute(value = "user") @Valid CustomersDTO customersDTO, BindingResult result,
+			Model model) {
+		String errMsg = customersDTO.isValidPasswordConfirm() ? null : "password does not match";
+		model.addAttribute("errMsgConfirmPass", errMsg);
+		if (result.hasErrors() || errMsg != null) {
+			return "registerLayout";
+		} else {
+			if (loginService.register(customersDTO)) {
+				return "redirect:/login";
+			} else {
+				model.addAttribute("errMsgUserName", "Username already exists");
+				return "registerLayout";
+			}
+		}
+	}
+
+	@GetMapping(value = { "/forgot-password" })
+	public String forgotPassword() {
+		return "forgotPasswordLayout";
+	}
+	@GetMapping(value= {"/error"})
+	public String error() {
+		return "adminError";
+	}
 }

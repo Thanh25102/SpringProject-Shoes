@@ -51,6 +51,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     	http.formLogin().defaultSuccessUrl("/").failureUrl("/login?error");
     	http.formLogin().successHandler(loginSuccessHandler);
     	
+    	http.exceptionHandling().accessDeniedPage("/error");
+    	
     	
     	http.logout().logoutSuccessUrl("/login").logoutUrl("/logout");
     	http.logout().logoutSuccessHandler(logoutSuccessHandler);

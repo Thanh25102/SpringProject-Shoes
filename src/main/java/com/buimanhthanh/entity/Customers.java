@@ -9,7 +9,9 @@ import java.util.Set;
 @Entity
 @Table(name = "customers")
 public class Customers implements Serializable{
-    @Id
+    private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
@@ -43,7 +45,9 @@ public class Customers implements Serializable{
     private Set<Orders> ordersSet;
     
     
-
+    public Customers() {
+		// TODO Auto-generated constructor stub
+	}
     public Customers(String email, String fullName) {
 		this.email = email;
 		this.fullName = fullName;

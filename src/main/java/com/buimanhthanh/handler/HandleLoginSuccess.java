@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.buimanhthanh.dto.UsersDTO;
 import com.buimanhthanh.service.UserService;
@@ -23,7 +24,9 @@ public class HandleLoginSuccess implements AuthenticationSuccessHandler{
 			Authentication authentication) throws IOException, ServletException {
 		UsersDTO user =  this.userDetailService.getUsers(authentication.getName()); 
 		request.getSession().setAttribute("currentUser", user);
-		response.sendRedirect("/");
+		String url = ServletUriComponentsBuilder.fromRequestUri(request).replacePath(null).build().toUriString();
+		System.out.println(url);
+		response.sendRedirect("/SpringProject");
 	}
 
 }

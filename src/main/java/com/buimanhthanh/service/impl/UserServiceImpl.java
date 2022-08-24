@@ -25,7 +25,6 @@ public class UserServiceImpl implements UserService{
 		if(user == null) {
 			throw new UsernameNotFoundException("ncc");
 		}
-		System.out.println(user);
 		return user;
 	}
 

@@ -6,47 +6,38 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "authorities")
-public class Authorities implements Serializable{
-    private static final long serialVersionUID = 1L;
+public class Authorities implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Id
-    @Column(name = "user_name")
-    private String userName;
+	@Column(name = "authority")
+	private String authority;
 
-    @Id
-    @Column(name = "authority")
-    private String authority;
+	@Id
+	@ManyToOne
+	@JoinColumn(name = "user_name")
+	private Users users;
 
-    @ManyToOne
-    @JoinColumn(name = "user_name")
-    private Users users;
-
-    public Authorities(String userName, String authority) {
-		this.userName = userName;
+	public Authorities(String authority) {
 		this.authority = authority;
+	}
+	public Authorities() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public Users getUsers() {
-        return users;
-    }
+		return users;
+	}
 
-    public void setUsers(Users users) {
-        this.users = users;
-    }
+	public void setUsers(Users users) {
+		this.users = users;
+	}
 
-    public String getUserName() {
-        return this.userName;
-    }
+	public String getAuthority() {
+		return this.authority;
+	}
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getAuthority() {
-        return this.authority;
-    }
-
-    public void setAuthority(String authority) {
-        this.authority = authority;
-    }
+	public void setAuthority(String authority) {
+		this.authority = authority;
+	}
 }

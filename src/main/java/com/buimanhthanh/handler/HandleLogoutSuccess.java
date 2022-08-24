@@ -15,7 +15,7 @@ public class HandleLogoutSuccess implements LogoutSuccessHandler{
 	public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
 			throws IOException, ServletException {
 		request.getSession().removeAttribute("currentUser");
-		response.sendRedirect("/");
+		response.sendRedirect("/SpringProject/login");
 	}
 
 }

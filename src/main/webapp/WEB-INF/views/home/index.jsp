@@ -22,6 +22,7 @@
 			</div>
 			<!-- ./Slider -->
     </div> <!-- End slider area -->
+    <h1><c:if test="${ currentUser !=null }">${ currentUser.toString() }</c:if></h1>
     	
     <div class="promo-area">
         <div class="zigzag-bottom"></div>

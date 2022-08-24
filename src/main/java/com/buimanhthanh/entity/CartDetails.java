@@ -7,7 +7,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "cart_details")
 public class CartDetails implements Serializable{
-    @Id
+    private static final long serialVersionUID = 1L;
+
+	@Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

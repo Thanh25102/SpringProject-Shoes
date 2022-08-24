@@ -1,6 +1,5 @@
 package com.buimanhthanh.entity;
 
-
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,37 +15,43 @@ import javax.persistence.Transient;
 
 @Entity
 @Table(name = "users")
-public class Users implements Serializable{
-    @Id
-    @Column(name = "user_name")
-    private String userName;
+public class Users implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-    @Column(name = "password")
-    private String password;
-    
-    @Transient
-    private String confirmPassword;
+	@Id
+	@Column(name = "user_name")
+	private String userName;
 
-    @Column(name = "enabled")
-    private Boolean enabled;
+	@Column(name = "password")
+	private String password;
 
-    @OneToOne(mappedBy = "users",cascade = {CascadeType.ALL})
-    private Customers customers;
+	@Transient
+	private String confirmPassword;
 
-    @OneToOne(mappedBy = "users")
-    private Staff staff;
+	@Column(name = "enabled")
+	private Boolean enabled;
 
-    @OneToMany(mappedBy = "users",cascade = {CascadeType.ALL})
-    private Set<Authorities> authoritiesSet;
+	@OneToOne(mappedBy = "users", cascade = { CascadeType.ALL })
+	private Customers customers;
 
-    public String getConfirmPassword() {
+	@OneToOne(mappedBy = "users")
+	private Staff staff;
+
+	@OneToMany(mappedBy = "users", cascade = { CascadeType.ALL })
+	private Set<Authorities> authoritiesSet;
+
+	public String getConfirmPassword() {
 		return confirmPassword;
 	}
-    
+
 	public Users(String userName, String password, Boolean enabled) {
 		this.userName = userName;
 		this.password = password;
 		this.enabled = enabled;
+	}
+
+	public Users() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public void setConfirmPassword(String confirmPassword) {
@@ -54,57 +59,59 @@ public class Users implements Serializable{
 	}
 
 	public Staff getStaff() {
-        return staff;
-    }
+		return staff;
+	}
 
-    public void setStaff(Staff staff) {
-        this.staff = staff;
-    }
+	public void setStaff(Staff staff) {
+		this.staff = staff;
+	}
 
-    public String getUserName() {
-        return this.userName;
-    }
+	public String getUserName() {
+		return this.userName;
+	}
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-    public String getPassword() {
-        return this.password;
-    }
+	public String getPassword() {
+		return this.password;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public Boolean getEnabled() {
-        return this.enabled;
-    }
+	public Boolean getEnabled() {
+		return this.enabled;
+	}
 
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
-    public Customers getCustomers() {
-        return customers;
-    }
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
 
-    public void setCustomers(Customers customers) {
-        this.customers = customers;
-    }
-    public Set<Authorities> getAuthoritiesSet() {
-        return authoritiesSet;
-    }
+	public Customers getCustomers() {
+		return customers;
+	}
 
-    public void setAuthoritiesSet(Set<Authorities> authoritiesSet) {
-        this.authoritiesSet = authoritiesSet;
-    }
+	public void setCustomers(Customers customers) {
+		this.customers = customers;
+	}
 
-    public void addAuthorities(Authorities authorities){
-        if(this.authoritiesSet == null){
-            authoritiesSet = new HashSet<Authorities>();
-        }
-        authoritiesSet.add(authorities);
-        authorities.setUsers(this);
-    }
+	public Set<Authorities> getAuthoritiesSet() {
+		return authoritiesSet;
+	}
+
+	public void setAuthoritiesSet(Set<Authorities> authoritiesSet) {
+		this.authoritiesSet = authoritiesSet;
+	}
+
+	public void addAuthorities(Authorities authorities) {
+		if (this.authoritiesSet == null) {
+			authoritiesSet = new HashSet<Authorities>();
+		}
+		authoritiesSet.add(authorities);
+		authorities.setUsers(this);
+	}
 
 }

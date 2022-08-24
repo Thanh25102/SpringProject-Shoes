@@ -13,4 +13,7 @@
     <definition name="forgotPasswordLayout" template="/WEB-INF/views/login/forgot-password.jsp">
 
     </definition>
+    <definition name="adminError" template="/WEB-INF/views/admin/404.jsp">
+        <put-attribute name="title" value="Error" />
+    </definition>
 </tiles-definitions>

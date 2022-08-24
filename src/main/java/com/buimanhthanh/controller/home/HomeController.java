@@ -1,5 +1,7 @@
 package com.buimanhthanh.controller.home;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,11 +26,12 @@ public class HomeController {
 	private CategoriesService categoriesService;
 
 	@GetMapping(value = { "/" })
-	public ModelAndView index(Model model) {
+	public ModelAndView index(Model model,HttpSession session) {
 		ModelAndView mv = new ModelAndView("index");
 		mv.addObject("slide",productImagesService.getAllProductImageTypeEqualSlide());
-		productsService.getTopProductLatest().forEach(System.out::println);
 		mv.addObject("products",productsService.getTopProductLatest());
+		mv.addObject("currentUser",session.getAttribute("currentUser"));
+		
 		return mv;
 	}
 

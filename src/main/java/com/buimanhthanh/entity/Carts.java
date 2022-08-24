@@ -9,7 +9,9 @@ import java.util.Set;
 @Entity
 @Table(name = "carts")
 public class Carts implements Serializable{
-    @Id
+    private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;

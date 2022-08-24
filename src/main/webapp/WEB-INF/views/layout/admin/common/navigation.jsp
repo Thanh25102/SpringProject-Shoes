@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://www.springframework.org/security/tags"  prefix="security"%>
 <!-- Sidebar -->
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -31,42 +32,80 @@
   <!-- Divider -->
   <hr class="sidebar-divider">
 
+		<!-- Heading -->
+		  <div class="sidebar-heading">
+		    Interface
+		  </div>
+		
+		  <!-- Nav Item - Pages Collapse Menu -->
+		  <li class="nav-item">
+		    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
+		       aria-expanded="true" aria-controls="collapseTwo">
+		      <i class="fas fa-fw fa-cog"></i>
+		      <span>Components</span>
+		    </a>
+		    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+		      <div class="bg-white py-2 collapse-inner rounded">
+		        <h6 class="collapse-header">Custom Components:</h6>
+		        
+				<security:authorize access="hasAnyRole('EDITOR','ADMIN')">
+			        <a class="collapse-item" href="buttons.html">Buttons</a>
+			        <a class="collapse-item" href="cards.html">Cards</a>
+		        </security:authorize>
+		      </div>
+		    </div>
+		  </li>
+		
+		  <!-- Nav Item - Utilities Collapse Menu -->
+		  <li class="nav-item">
+		    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+		       aria-expanded="true" aria-controls="collapseUtilities">
+		      <i class="fas fa-fw fa-wrench"></i>
+		      <span>Utilities</span>
+		    </a>
+		    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+		         data-parent="#accordionSidebar">
+		      <div class="bg-white py-2 collapse-inner rounded">
+		        <h6 class="collapse-header">Custom Utilities:</h6>
+		        <security:authorize access="hasAnyRole('EDITOR','ADMIN')">
+			        <a class="collapse-item" href="utilities-color.html">Colors</a>
+			        <a class="collapse-item" href="utilities-border.html">Borders</a>
+			        <a class="collapse-item" href="utilities-animation.html">Animations</a>
+			        <a class="collapse-item" href="utilities-other.html">Other</a>
+		        </security:authorize>
+		      </div>
+		    </div>
+		  </li>
+  <hr class="sidebar-divider">
+
   <!-- Heading -->
   <div class="sidebar-heading">
-    Interface
+    Management
   </div>
 
   <!-- Nav Item - Pages Collapse Menu -->
   <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-       aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-fw fa-cog"></i>
-      <span>Components</span>
+    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages1"
+       aria-expanded="true" aria-controls="collapsePages">
+      <i class="fas fa-fw fa-folder"></i>
+      <span>Manager</span>
     </a>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+    <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Custom Components:</h6>
-        <a class="collapse-item" href="buttons.html">Buttons</a>
-        <a class="collapse-item" href="cards.html">Cards</a>
-      </div>
-    </div>
-  </li>
-
-  <!-- Nav Item - Utilities Collapse Menu -->
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-       aria-expanded="true" aria-controls="collapseUtilities">
-      <i class="fas fa-fw fa-wrench"></i>
-      <span>Utilities</span>
-    </a>
-    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-         data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Custom Utilities:</h6>
-        <a class="collapse-item" href="utilities-color.html">Colors</a>
-        <a class="collapse-item" href="utilities-border.html">Borders</a>
-        <a class="collapse-item" href="utilities-animation.html">Animations</a>
-        <a class="collapse-item" href="utilities-other.html">Other</a>
+        <h6 class="collapse-header">List :</h6>
+        <security:authorize access="hasAnyRole('ADMIN')">
+          <a class="collapse-item" href="../login/login.jsp">CUSTOMER</a>
+          <a class="collapse-item" href="../login/login.jsp">STAFF</a>
+          <a class="collapse-item" href="../login/login.jsp">AUTHORITIES</a>
+          <a class="collapse-item" href="../login/login.jsp">USER</a>
+        </security:authorize>
+        <security:authorize access="hasAnyRole('ADMIN','SALE')">
+          <a class="collapse-item" href="../login/login.jsp">ORDERS</a>
+          <a class="collapse-item" href="../login/login.jsp">CARTS</a>
+          <a class="collapse-item" href="../login/login.jsp">PRODUCTS</a>
+          <a class="collapse-item" href="../login/login.jsp">CATEGORIES</a>
+        </security:authorize>
+        <div class="collapse-divider"></div>
       </div>
     </div>
   </li>
@@ -98,20 +137,6 @@
         <a class="collapse-item" href="blank.html">Blank Page</a>
       </div>
     </div>
-  </li>
-
-  <!-- Nav Item - Charts -->
-  <li class="nav-item">
-    <a class="nav-link" href="charts.html">
-      <i class="fas fa-fw fa-chart-area"></i>
-      <span>Charts</span></a>
-  </li>
-
-  <!-- Nav Item - Tables -->
-  <li class="nav-item">
-    <a class="nav-link" href="tables.jsp">
-      <i class="fas fa-fw fa-table"></i>
-      <span>Tables</span></a>
   </li>
 
   <!-- Divider -->
