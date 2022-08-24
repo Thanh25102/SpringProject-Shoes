@@ -3,25 +3,34 @@
         "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-    <definition name="homeLayout" template="/WEB-INF/views/layout/home/base.jsp">
-        <put-attribute name="title" value="BuiManhThanh" />
-        <put-attribute name="header" value="/WEB-INF/views/layout/home/common/header.jsp"/>
-        <put-attribute name="content" value="/WEB-INF/views/layout/home/common/content.jsp"/>
-        <put-attribute name="footer" value="/WEB-INF/views/layout/home/common/footer.jsp"/>
-    </definition>
-    <definition name="index" extends="homeLayout">
-        <put-attribute name="content" value="/WEB-INF/views/home/index.jsp"/>
-    </definition>
-    <definition name="cart" extends="homeLayout">
-        <put-attribute name="content" value="/WEB-INF/views/home/cart.jsp"/>
-    </definition>
-    <definition name="checkOut" extends="homeLayout">
-        <put-attribute name="content" value="/WEB-INF/views/home/checkout.jsp"/>
-    </definition>
-    <definition name="shop" extends="homeLayout">
-        <put-attribute name="content" value="/WEB-INF/views/home/shop.jsp"/>
-    </definition>
-    <definition name="detailProduct" extends="homeLayout">
-        <put-attribute name="content" value="/WEB-INF/views/home/single-product.jsp"/>
-    </definition>
+	<definition name="homeLayout"
+		template="/WEB-INF/views/layout/home/base.jsp">
+		<put-attribute name="title" value="BuiManhThanh" />
+		<put-attribute name="header"
+			value="/WEB-INF/views/layout/home/common/header.jsp" />
+		<put-attribute name="content"
+			value="/WEB-INF/views/layout/home/common/content.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/views/layout/home/common/footer.jsp" />
+	</definition>
+	<definition name="index" extends="homeLayout">
+		<put-attribute name="content"
+			value="/WEB-INF/views/home/index.jsp" />
+	</definition>
+	<definition name="cart" extends="homeLayout">
+		<put-attribute name="content"
+			value="/WEB-INF/views/home/cart.jsp" />
+	</definition>
+	<definition name="checkOut" extends="homeLayout">
+		<put-attribute name="content"
+			value="/WEB-INF/views/home/checkout.jsp" />
+	</definition>
+	<definition name="shop" extends="homeLayout">
+		<put-attribute name="content"
+			value="/WEB-INF/views/home/shop.jsp" />
+	</definition>
+	<definition name="detailProduct" extends="homeLayout">
+		<put-attribute name="content"
+			value="/WEB-INF/views/home/single-product.jsp" />
+	</definition>
 </tiles-definitions>

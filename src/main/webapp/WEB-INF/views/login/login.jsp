@@ -49,7 +49,9 @@
 									</div>
 									<form class="user" id="form-spring-project" method="post"
 										action="<c:url value="/login"/>">
-										<p><c:url value=""/></p>
+										<p>
+											<c:url value="" />
+										</p>
 										<div class="form-group">
 											<input type="text" name="username"
 												class="form-control form-control-user"
