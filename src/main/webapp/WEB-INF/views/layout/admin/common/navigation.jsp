@@ -91,16 +91,15 @@
 			<div class="bg-white py-2 collapse-inner rounded">
 				<h6 class="collapse-header">List :</h6>
 				<security:authorize access="hasAnyRole('ADMIN')">
-					<a class="collapse-item" href="../login/login.jsp">CUSTOMER</a>
-					<a class="collapse-item" href="../login/login.jsp">STAFF</a>
-					<a class="collapse-item" href="../login/login.jsp">AUTHORITIES</a>
-					<a class="collapse-item" href="../login/login.jsp">USER</a>
+					<a class="collapse-item" href="<c:url value='/admin/customer'/>">CUSTOMER</a>
+					<a class="collapse-item" href="<c:url value='/admin/staff'/>">STAFF</a>
+					<a class="collapse-item" href="<c:url value='/admin/user'/>">USER</a>
 				</security:authorize>
 				<security:authorize access="hasAnyRole('ADMIN','SALE')">
-					<a class="collapse-item" href="../login/login.jsp">ORDERS</a>
-					<a class="collapse-item" href="../login/login.jsp">CARTS</a>
-					<a class="collapse-item" href="../login/login.jsp">PRODUCTS</a>
-					<a class="collapse-item" href="../login/login.jsp">CATEGORIES</a>
+					<a class="collapse-item" href="<c:url value='/admin/customer'/>">ORDERS</a>
+					<a class="collapse-item" href="<c:url value='/admin/customer'/>">CARTS</a>
+					<a class="collapse-item" href="<c:url value='/admin/product'/>">PRODUCTS</a>
+					<a class="collapse-item" href="<c:url value='/admin/categories'/>">CATEGORIES</a>
 				</security:authorize>
 				<div class="collapse-divider"></div>
 			</div>

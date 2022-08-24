@@ -24,4 +24,20 @@
 		<put-attribute name="content"
 			value="/WEB-INF/views/admin/tables.jsp" />
 	</definition>
+	<definition name="adminAnimation" extends="adminLayout">
+		<put-attribute name="content"
+			value="/WEB-INF/views/admin/utilities-animation.jsp" />
+	</definition>
+	<definition name="adminBorder" extends="adminLayout">
+		<put-attribute name="content"
+			value="/WEB-INF/views/admin/utilities-border.jsp" />
+	</definition>
+	<definition name="adminColor" extends="adminLayout">
+		<put-attribute name="content"
+			value="/WEB-INF/views/admin/utilities-color.jsp" />
+	</definition>
+	<definition name="adminOther" extends="adminLayout">
+		<put-attribute name="content"
+			value="/WEB-INF/views/admin/utilities-other.jsp" />
+	</definition>
 </tiles-definitions>

@@ -1,5 +1,7 @@
 package com.buimanhthanh.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -26,6 +28,11 @@ public class UserDAOImpl implements UserDAO {
 	public void saveUser(Users users) {
 		Session session =  sessionFactory.getCurrentSession();
 		session.save(users);
+	}
+
+	@Override
+	public List<Users> getAllUser() {
+		return sessionFactory.getCurrentSession().createQuery(" from Users ",Users.class).getResultList();
 	}
 	
 

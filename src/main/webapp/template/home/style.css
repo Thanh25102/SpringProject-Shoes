@@ -460,6 +460,9 @@ body {
 
 .product-f-image {
 	position: relative;
+	display: flex;
+	align-items: center;
+	height:270px;
 }
 
 .product-hover {

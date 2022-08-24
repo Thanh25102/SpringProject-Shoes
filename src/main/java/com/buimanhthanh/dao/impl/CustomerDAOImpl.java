@@ -1,5 +1,7 @@
 package com.buimanhthanh.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public void saveCustomer(Customers customers) {
 		Session session = sessionFactory.getCurrentSession();
 		session.saveOrUpdate(customers);
+	}
+
+	@Override
+	public List<Customers> getAllCustomer() {
+		return sessionFactory.getCurrentSession().createQuery("from Customers ",Customers.class).getResultList();
 	}
 
 }

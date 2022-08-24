@@ -31,7 +31,6 @@ public class HomeController {
 		mv.addObject("slide",productImagesService.getAllProductImageTypeEqualSlide());
 		mv.addObject("products",productsService.getTopProductLatest());
 		mv.addObject("currentUser",session.getAttribute("currentUser"));
-		
 		return mv;
 	}
 

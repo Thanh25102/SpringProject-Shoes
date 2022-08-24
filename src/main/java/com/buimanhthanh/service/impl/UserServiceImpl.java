@@ -1,5 +1,7 @@
 package com.buimanhthanh.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -39,6 +41,12 @@ public class UserServiceImpl implements UserService{
 	@Transactional
 	public void saveUsers(Users users) {
 		userDAO.saveUser(users);
+	}
+
+	@Override
+	@Transactional
+	public List<UsersDTO> getAllUsers() {
+		return ConvertEntityToDto.convertUsersDto(userDAO.getAllUser());
 	}
 
 	

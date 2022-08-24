@@ -23,7 +23,7 @@ public class CustomersDTO {
 	 */
 	@Pattern(regexp = "^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$", message = "{user.userName.err}")
 	private String userName;
-//	@Pattern(regexp = "\"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$\"",message = "{user.password.err}")
+	@Pattern(regexp = "\"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$\"",message = "{user.password.err}")
 	private String password;
 
 	private String confirmPassword;
