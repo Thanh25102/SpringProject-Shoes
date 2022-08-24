@@ -31,6 +31,7 @@
 <link
 	href="<c:url value="/template/admin/vendor/datatables/dataTables.bootstrap4.min.css"/>"
 	rel="stylesheet">
+	<link rel="stylesheet" href="<c:url value="/template/admin/css/style.css"/>">
 
 </head>
 <body id="page-top">
@@ -102,6 +103,16 @@
 		src="<c:url value="/template/admin/js/demo/chart-area-demo.js"/>"></script>
 	<script
 		src="<c:url value="/template/admin/js/demo/chart-pie-demo.js"/>"></script>
+	<script>
+		function hiddenFormCustom() {
+			let formCustom = document.getElementById('overlay_formCustom')
+			formCustom.style.display = 'none'
+		}
+		function displayFormCustom() {
+			let formCustom = document.getElementById('overlay_formCustom')
+			formCustom.style.display = 'flex'
+		}
+	</script>
 </body>
 </html>
 
