@@ -22,4 +22,7 @@ public interface ProductsDAO {
 	public Long countTotalPage(Integer idCategory);
 
 	public Long countProductFromCategory(Integer idCategory);
+
+	public void addProduct(Products products);
+
 }

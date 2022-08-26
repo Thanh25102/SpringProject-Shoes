@@ -90,5 +90,8 @@ public class ProductsDAOImpl implements com.buimanhthanh.dao.ProductsDAO {
 		return countQuery.getSingleResult();
 	}
 
-
+	@Override
+	public void addProduct(Products products) {
+		sessionFactory.getCurrentSession().saveOrUpdate(products);
+	}
 }

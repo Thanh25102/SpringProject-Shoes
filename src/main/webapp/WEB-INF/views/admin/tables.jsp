@@ -15,7 +15,7 @@
 
 	<!-- DataTales Example -->
 	<div class="card shadow mb-4">
-		<div class="card-header py-3 row">
+		<div class="card-header py-3 row header__dataTable">
 			<h6 class="m-0 font-weight-bold text-primary">DataTables</h6>
 			<h6 class="m-0 font-weight-bold text-primary text-right" onclick="displayFormCustom()">Add data</h6>
 		</div>
@@ -182,10 +182,7 @@
 										<th>${c.userName }</th>
 										<th>${c.password }</th>
 										<th>${c.enabled }</th>
-										<th>
-											<a href="#">click</a>
-										</th>
-										<th>Action</th>
+										<th>Delete</th>
 									</tr>
 								</c:forEach>
 							</c:when>
@@ -211,7 +208,7 @@
 			<form>
 				<div class="container py-5 h-100">
 				<div class="row justify-content-center align-items-center h-100">
-					<div class="col-12 col-lg-9 col-xl-7">
+					<div class="col-12 col-lg-9 col-xl-10">
 						<div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
 							<div class="card-body p-4 p-md-5">
 								<div class="row">
@@ -385,22 +382,62 @@
 													</div>
 												</div>
 											</div>
+
+											<div class="mt-4 pt-2">
+												<input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+											</div>
+										</form>
+									</c:when>
+									<c:when test="${type eq 'User'}">
+										<form>
+											<div class="row">
+												<div class="col-md-12 mb-6">
+													<div class="form-outline">
+														<input type="text" id="usernameAccount" class="form-control form-control-lg" />
+														<label class="form-label" for="usernameAccount">Username</label>
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-md-12 mb-6">
+													<div class="form-outline datepicker w-100">
+														<input type="number" class="form-control form-control-lg" id="password" />
+														<label for="password" class="form-label">Password</label>
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-md-12 mb-8 pb-4">
+													<select class="select form-control-lg">
+														<option value="1" disabled>Choose option</option>
+														<option value="2">True</option>
+														<option value="3">False</option>
+													</select>
+													<label class="form-label select-label">Choose option</label>
+												</div>
+											</div>
+
+											<div class="mt-4 pt-2">
+												<input class="btn btn-primary btn-lg" type="submit" value="Submit" />
+											</div>
+										</form>
+									</c:when>
+									<c:when test="${type eq 'Categories'}">
+										<form>
 											<div class="row">
 												<div class="col-md-6 mb-4">
-
-													<div class="form-outline datepicker w-100">
-														<input type="number" class="form-control form-control-lg" id="rawQuantity" />
-														<label for="rawQuantity" class="form-label">Raw Quantity</label>
+													<div class="form-outline">
+														<input type="text" id="nameCategories" class="form-control form-control-lg" />
+														<label class="form-label" for="nameCategories">Name Category</label>
 													</div>
-
 												</div>
 												<div class="col-md-6 mb-4">
-
-													<div class="form-outline datepicker w-100">
-														<input type="text" class="form-control form-control-lg" id="thumbnail" />
-														<label for="thumbnail" class="form-label">Thumbnail</label>
+													<div class="form-outline">
+														<input type="text" id="thumbnailCategory" class="form-control form-control-lg" />
+														<label class="form-label" for="thumbnailCategory">Thumbnail</label>
 													</div>
-
 												</div>
 											</div>
 
@@ -412,19 +449,9 @@
 													</div>
 												</div>
 												<div class="col-md-12 mb-8 pb-4">
-													<input class="form-control form-control-lg" id="formFileLg" type="file" />
+													<input class="form-control form-control-lg" id="categoryImages" type="file" />
 													<div class="small text-muted mt-2">Upload image or any other relevant file. Max file
 														size 50 MB</div>
-												</div>
-												<div class="col-md-12 mb-8 pb-4">
-													<select class="select form-control-lg">
-														<option value="1" disabled>Choose option</option>
-														<option value="2">Nike</option>
-														<option value="3">Adidas</option>
-														<option value="4">Bitis</option>
-														<option value="5">Fila</option>
-													</select>
-													<label class="form-label select-label">Choose option</label>
 												</div>
 											</div>
 

@@ -95,4 +95,6 @@ public class AdminController {
 		model.addAttribute("listObject", categoriesService.getAllCategories());
 		return "adminTable";
 	}
+
+
 }

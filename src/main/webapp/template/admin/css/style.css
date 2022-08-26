@@ -25,3 +25,7 @@
     display: flex;
     justify-content: center;
 }
+.header__dataTable{
+    display: flex;
+    justify-content: space-between;
+}
