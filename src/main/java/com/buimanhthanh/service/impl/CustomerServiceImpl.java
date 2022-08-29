@@ -30,4 +30,10 @@ public class CustomerServiceImpl implements CustomerService {
 		return ConvertEntityToDto.convertCustomerDto(customerDAO.getAllCustomer());
 	}
 
+	@Override
+	@Transactional
+	public CustomersDTO getCustomer(Integer id) {
+		return ConvertEntityToDto.convertCustomerDto(customerDAO.getCustomers(id));
+	}
+
 }

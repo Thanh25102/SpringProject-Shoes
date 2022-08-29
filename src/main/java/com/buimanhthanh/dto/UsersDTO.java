@@ -12,7 +12,7 @@ public class UsersDTO implements UserDetails{
     private static final long serialVersionUID = 1L;
 	private String userName;
     private String password;
-    private Boolean enabled;
+    private Boolean enabled4;
 
     private Set<String> userRoles;
 
@@ -40,13 +40,15 @@ public class UsersDTO implements UserDetails{
         this.password = password;
     }
 
-    public Boolean getEnabled() {
-        return this.enabled;
-    }
+	public Boolean getEnabled4() {
+		return this.enabled4;
+	}
 
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
+	public void setEnabled4(Boolean enabled4) {
+		this.enabled4 = enabled4;
+	}
+
+
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -77,12 +79,12 @@ public class UsersDTO implements UserDetails{
 
 	@Override
 	public boolean isEnabled() {
-		return this.enabled;
+		return this.enabled4;
 	}
 
 	@Override
 	public String toString() {
-		return "UsersDTO [userName=" + userName + ", password=" + password + ", enabled=" + enabled + ", userRoles="
+		return "UsersDTO [userName=" + userName + ", password=" + password + ", enabled=" + enabled4 + ", userRoles="
 				+ userRoles + "]";
 	}
 }

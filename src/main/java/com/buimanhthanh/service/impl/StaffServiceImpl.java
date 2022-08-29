@@ -23,4 +23,10 @@ public class StaffServiceImpl implements StaffService {
 		return ConvertEntityToDto.convertStaffDto(staffDAO.getAllStaff());
 	}
 
+	@Override
+	@Transactional
+	public StaffDTO getStaff(Integer id) {
+		return ConvertEntityToDto.convertStaffDto(staffDAO.getStaff(id));
+	}
+
 }

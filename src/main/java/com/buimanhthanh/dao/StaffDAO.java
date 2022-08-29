@@ -7,4 +7,5 @@ import com.buimanhthanh.entity.Staff;
 public interface StaffDAO {
 
 	List<Staff> getAllStaff();
+	Staff getStaff(Integer id);
 }

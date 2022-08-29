@@ -8,4 +8,6 @@ import com.buimanhthanh.entity.Customers;
 public interface CustomerService{
 	void saveCustomer(Customers customers);
 	List<CustomersDTO> getAllCustomer();
+
+	CustomersDTO getCustomer(Integer id);
 }

@@ -9,4 +9,6 @@ public interface CustomerDAO {
 	void saveCustomer(Customers customers);
 	
 	List<Customers> getAllCustomer();
+
+	Customers getCustomers(Integer id);
 }

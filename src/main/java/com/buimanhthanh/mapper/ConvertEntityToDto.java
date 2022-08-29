@@ -91,7 +91,7 @@ public class ConvertEntityToDto {
 			UsersDTO usersDTO = new UsersDTO();
 			usersDTO.setUserName(users.getUserName());
 			usersDTO.setPassword(users.getPassword());
-			usersDTO.setEnabled(users.getEnabled());
+			usersDTO.setEnabled4(users.getEnabled());
 			Set<String> userRole = new HashSet<>();
 			if (!users.getAuthoritiesSet().isEmpty()) {
 				users.getAuthoritiesSet().forEach(auth -> userRole.add(auth.getAuthority()));

@@ -1,5 +1,9 @@
 package com.buimanhthanh.controller.admin;
 
+import com.buimanhthanh.dto.CustomersDTO;
+import com.buimanhthanh.dto.ProductsDTO;
+import com.buimanhthanh.dto.StaffDTO;
+import com.buimanhthanh.dto.UsersDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +15,10 @@ import com.buimanhthanh.service.CustomerService;
 import com.buimanhthanh.service.ProductsService;
 import com.buimanhthanh.service.StaffService;
 import com.buimanhthanh.service.UserService;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -62,28 +70,77 @@ public class AdminController {
 	}
 	
 	@GetMapping(value = { "/product" })
-	public String product(Model model) {
+	public String product(Model model, @RequestParam(required = false,defaultValue = "-1") Integer id, @RequestParam(required = false,defaultValue = "null") String action) {
+		model.addAttribute("url", "product");
+		if(id != -1 && !action.equals("null")){
+			if(action.equals("edit")){
+				model.addAttribute("objectEdit",productsService.getProduct(id));
+			}else if(action.equals("delete")){
+				model.addAttribute("objectEdit",productsService.getProduct(id));
+			}
+		}else	{
+			model.addAttribute("objectEdit",new ProductsDTO());
+		}
 		model.addAttribute("type", "Products");
+		List<String> categories = new ArrayList<>();
+		categoriesService.getAllCategories().forEach(c->{
+			categories.add(c.getName());
+		});
+		model.addAttribute("categories",categories);
 		model.addAttribute("listObject", productsService.getAllProduct());
 		return "adminTable";
 	}
 
 	@GetMapping(value = { "/customer" })
-	public String customer(Model model) {
+	public String customer(Model model, @RequestParam(required = false,defaultValue = "-1") Integer id, @RequestParam(required = false,defaultValue = "null") String action) {
+		model.addAttribute("url", "customer");
+		if(id != -1 && !action.equals("null")){
+			if(action.equals("edit")){
+				model.addAttribute("objectEdit",customerService.getCustomer(id));
+			}else if(action.equals("delete")){
+				model.addAttribute("objectEdit",customerService.getCustomer(id));
+			}
+		}else	{
+			model.addAttribute("objectEdit",new CustomersDTO());
+		}
 		model.addAttribute("type", "Customers");
 		model.addAttribute("listObject", customerService.getAllCustomer());
 		return "adminTable";
 	}
 
 	@GetMapping(value = { "/staff" })
-	public String staff(Model model) {
+	public String staff(Model model, @RequestParam(required = false,defaultValue = "-1") Integer id, @RequestParam(required = false,defaultValue = "null") String action) {
+		model.addAttribute("url", "staff");
+		if(id != -1 && !action.equals("null")){
+			if(action.equals("edit")){
+				model.addAttribute("objectEdit",staffService.getStaff(id));
+			}else if(action.equals("delete")){
+				model.addAttribute("objectEdit",staffService.getStaff(id));
+			}
+		}else	{
+			model.addAttribute("objectEdit",new StaffDTO());
+		}
 		model.addAttribute("type", "Staff");
 		model.addAttribute("listObject", staffService.getAllStaff());
 		return "adminTable";
 	}
 
 	@GetMapping(value = { "/user" })
-	public String user(Model model) {
+	public String user(Model model, @RequestParam(required = false,defaultValue = "null") String id, @RequestParam(required = false,defaultValue = "null") String action) {
+		model.addAttribute("url", "user");
+		if(!id.equals("null") && !action.equals("null")){
+			if(action.equals("edit")){
+				model.addAttribute("objectEdit",userService.getUsers(id));
+			}else if(action.equals("delete")){
+				model.addAttribute("objectEdit",new UsersDTO());
+			}
+		}else	{
+			model.addAttribute("objectEdit",new UsersDTO());
+		}
+		List<Boolean> active = new ArrayList<>();
+		active.add(true);
+		active.add(false);
+		model.addAttribute("active",active);
 		model.addAttribute("type", "User");
 		model.addAttribute("listObject", userService.getAllUsers());
 		return "adminTable";
@@ -91,6 +148,7 @@ public class AdminController {
 
 	@GetMapping(value = { "/categories" })
 	public String categories(Model model) {
+		model.addAttribute("url", "categories");
 		model.addAttribute("type", "Categories");
 		model.addAttribute("listObject", categoriesService.getAllCategories());
 		return "adminTable";
