@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface CategoriesService {
     List<CategoriesDTO> getAllCategories();
+
+    CategoriesDTO getCategories(Integer id);
 }

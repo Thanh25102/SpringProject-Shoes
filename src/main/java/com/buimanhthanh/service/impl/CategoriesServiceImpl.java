@@ -21,4 +21,10 @@ public class CategoriesServiceImpl implements CategoriesService {
     public List<CategoriesDTO> getAllCategories() {
         return ConvertEntityToDto.convertCategoriesDto(categoriesDAO.getAllCategories());
     }
+
+    @Override
+    @Transactional
+    public CategoriesDTO getCategories(Integer id) {
+        return ConvertEntityToDto.convertCategoriesDto(categoriesDAO.getCategories(id));
+    }
 }

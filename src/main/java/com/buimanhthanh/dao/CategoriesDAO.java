@@ -5,6 +5,7 @@ import com.buimanhthanh.entity.Categories;
 import java.util.List;
 
 public interface CategoriesDAO {
-    public List<Categories> getAllCategories();
+    List<Categories> getAllCategories();
 
+    Categories getCategories(Integer id);
 }

@@ -437,17 +437,17 @@
 										</form:form>
 									</c:when>
 									<c:when test="${type eq 'Categories'}">
-										<form>
+										<form:form>
 											<div class="row">
 												<div class="col-md-6 mb-4">
 													<div class="form-outline">
-														<input type="text" id="nameCategories" class="form-control form-control-lg" />
+														<form:input type="text" id="nameCategories" class="form-control form-control-lg" />
 														<label class="form-label" for="nameCategories">Name Category</label>
 													</div>
 												</div>
 												<div class="col-md-6 mb-4">
 													<div class="form-outline">
-														<input type="text" id="thumbnailCategory" class="form-control form-control-lg" />
+														<form:input type="text" id="thumbnailCategory" class="form-control form-control-lg" />
 														<label class="form-label" for="thumbnailCategory">Thumbnail</label>
 													</div>
 												</div>
@@ -456,7 +456,7 @@
 											<div class="row">
 												<div class="col-md-12 mb-8 pb-4">
 													<div class="form-outline">
-														<textarea class="form-control" rows="3" placeholder="Type the description of the product"></textarea>
+														<form:textarea class="form-control" rows="3" placeholder="Type the description of the product"></form:textarea>
 														<label class="form-label">Description</label>
 													</div>
 												</div>
@@ -470,7 +470,7 @@
 											<div class="mt-4 pt-2">
 												<input class="btn btn-primary btn-lg" type="submit" value="Submit" />
 											</div>
-										</form>
+										</form:form>
 									</c:when>
 								</c:choose>
 								<%--<form>

@@ -1,9 +1,6 @@
 package com.buimanhthanh.controller.admin;
 
-import com.buimanhthanh.dto.CustomersDTO;
-import com.buimanhthanh.dto.ProductsDTO;
-import com.buimanhthanh.dto.StaffDTO;
-import com.buimanhthanh.dto.UsersDTO;
+import com.buimanhthanh.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -147,8 +144,17 @@ public class AdminController {
 	}
 
 	@GetMapping(value = { "/categories" })
-	public String categories(Model model) {
+	public String categories(Model model, @RequestParam(required = false,defaultValue = "null") Integer id, @RequestParam(required = false,defaultValue = "null") String action) {
 		model.addAttribute("url", "categories");
+		if(!id.equals("null") && !action.equals("null")){
+			if(action.equals("edit")){
+				model.addAttribute("objectEdit",categoriesService.getCategories(id));
+			}else if(action.equals("delete")){
+				model.addAttribute("objectEdit",new CategoriesDTO());
+			}
+		}else	{
+			model.addAttribute("objectEdit",new CategoriesDTO());
+		}
 		model.addAttribute("type", "Categories");
 		model.addAttribute("listObject", categoriesService.getAllCategories());
 		return "adminTable";
