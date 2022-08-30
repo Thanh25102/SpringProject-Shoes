@@ -34,4 +34,5 @@ public class ProductImagesDAOImpl implements ProductImagesDAO {
 		return theQuery.getResultList();
 	}
 
+
 }

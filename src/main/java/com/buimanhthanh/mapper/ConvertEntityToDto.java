@@ -20,6 +20,22 @@ import java.util.Set;
 
 public class ConvertEntityToDto {
 
+
+	public static List<ProductImagesDTO> convertProductImagesDtos(Products products){
+		List<ProductImagesDTO> list = new ArrayList<>();
+		products.getProductImagesSet().forEach(pi->{
+			ProductImagesDTO productImagesDTO = new ProductImagesDTO();
+			productImagesDTO.setId(pi.getId());
+			productImagesDTO.setType(pi.getType());
+			productImagesDTO.setUrl(pi.getUrl());
+			productImagesDTO.setName(pi.getProducts().getName());
+			productImagesDTO.setThumbnail(pi.getProducts().getThumbnail());
+			productImagesDTO.setPrice(pi.getProducts().getThumbnail());
+			productImagesDTO.setFile(pi.getFile());
+			list.add(productImagesDTO);
+		});
+		return list;
+	}
 	public static ProductImagesDTO convertProductImagesDtos(ProductImages productImages) {
 		ProductImagesDTO productImagesDTO = new ProductImagesDTO();
 		productImagesDTO.setId(productImages.getId());
@@ -28,6 +44,7 @@ public class ConvertEntityToDto {
 		productImagesDTO.setName(productImages.getProducts().getName());
 		productImagesDTO.setThumbnail(productImages.getProducts().getThumbnail());
 		productImagesDTO.setPrice(productImages.getProducts().getThumbnail());
+		productImagesDTO.setFile(productImages.getFile());
 		return productImagesDTO;
 	}
 

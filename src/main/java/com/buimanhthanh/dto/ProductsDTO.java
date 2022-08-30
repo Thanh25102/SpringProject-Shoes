@@ -1,5 +1,7 @@
 package com.buimanhthanh.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.util.List;
 
 public class ProductsDTO {

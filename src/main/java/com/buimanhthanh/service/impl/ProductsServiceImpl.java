@@ -2,6 +2,7 @@ package com.buimanhthanh.service.impl;
 
 import java.util.List;
 
+import com.buimanhthanh.dto.ProductImagesDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -57,6 +58,12 @@ public class ProductsServiceImpl implements ProductsService {
 	@Transactional
 	public List<ProductsDTO> getProductFromCategoryLimit(Integer idCategory, Integer limit) {
 		return ConvertEntityToDto.convertProductDto(productsDAO.getProductFromCategoryLimit(idCategory,limit));
+	}
+
+	@Override
+	@Transactional
+	public List<ProductImagesDTO> getProductImages(Integer id) {
+		return ConvertEntityToDto.convertProductImagesDtos(productsDAO.getProduct(id));
 	}
 
 

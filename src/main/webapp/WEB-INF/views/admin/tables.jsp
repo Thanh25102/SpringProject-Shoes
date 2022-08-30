@@ -146,7 +146,7 @@
 										<td>${ p.thumbnail}</td>
 										<td>${ p.categoryName}</td>
 										<td>${ p.rawQuantity}</td>
-										<td><a href="#">click</a></td>
+										<td><a href="<c:url value="/admin/product?id=${p.id}&&action=detail"/>">click</a></td>
 										<td style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
 											<a href="<c:url value="/admin/product?id=${p.id}&&action=edit"/>" style="width: 80px; border-radius: 6px ">Edit</a>
 											<a href="<c:url value="/admin/product?id=${p.id}&&action=delete"/>" style="width: 80px; border-radius: 6px ">Delete</a>
@@ -206,8 +206,8 @@
 										<th>${c.description }</th>
 										<th>${c.logo }</th>
 										<td style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
-											<a href="<c:url value="/admin/category?id=${c.id}&&action=edit"/>" style="width: 80px; border-radius: 6px ">Edit</a>
-											<a href="<c:url value="/admin/category?id=${c.id}&&action=delete"/>" style="width: 80px; border-radius: 6px ">Delete</a>
+											<a href="<c:url value="/admin/categories?id=${c.id}&&action=edit"/>" style="width: 80px; border-radius: 6px ">Edit</a>
+											<a href="<c:url value="/admin/categories?id=${c.id}&&action=delete"/>" style="width: 80px; border-radius: 6px ">Delete</a>
 										</td>
 									</tr>
 								</c:forEach>
@@ -236,7 +236,7 @@
 								<c:choose>
 									<c:when test="${type eq 'Products'}">
 										<c:url value="/admin/product" var="urlP"/>
-										<form:form action="${urlP}" modelAttribute="objectEdit">
+										<form:form action="${urlP}" modelAttribute="objectEdit" enctype="multipart/form-data">
 											<div class="row">
 												<div class="col-md-6 mb-4">
 
@@ -437,17 +437,18 @@
 										</form:form>
 									</c:when>
 									<c:when test="${type eq 'Categories'}">
-										<form:form>
+										<c:url value="/admin/categories" var="urlcate"/>
+										<form:form action="${urlcate}" modelAttribute="objectEdit">
 											<div class="row">
 												<div class="col-md-6 mb-4">
 													<div class="form-outline">
-														<form:input type="text" id="nameCategories" class="form-control form-control-lg" />
+														<form:input type="text" id="nameCategories" class="form-control form-control-lg" path="name"/>
 														<label class="form-label" for="nameCategories">Name Category</label>
 													</div>
 												</div>
 												<div class="col-md-6 mb-4">
 													<div class="form-outline">
-														<form:input type="text" id="thumbnailCategory" class="form-control form-control-lg" />
+														<form:input type="text" id="thumbnailCategory" class="form-control form-control-lg" path="thumbnail" />
 														<label class="form-label" for="thumbnailCategory">Thumbnail</label>
 													</div>
 												</div>
@@ -456,7 +457,7 @@
 											<div class="row">
 												<div class="col-md-12 mb-8 pb-4">
 													<div class="form-outline">
-														<form:textarea class="form-control" rows="3" placeholder="Type the description of the product"></form:textarea>
+														<form:textarea class="form-control" rows="3" placeholder="Type the description of the product" path="description"></form:textarea>
 														<label class="form-label">Description</label>
 													</div>
 												</div>
@@ -581,6 +582,66 @@
 				</div>
 			</div>
 		</section>
+	</div>
+
+	<div id="overlay_tableDetail" ${param.id != null && param.action == 'detail' ? "style =' display:block;'" : "style ='display:none;'"}>
+		<div class="card shadow mb-4 table__detail">
+			<div class="card-header py-3 row header__dataTable">
+				<h6 class="m-0 font-weight-bold text-primary">DataTables</h6>
+				<h6 class="m-0 font-weight-bold text-primary text-center">
+					<a href="/SpringProject_war/admin/product?action=add">Add data</a>
+				</h6>
+				<h6 class="m-0 font-weight-bold text-primary text-right">
+					<a href="<c:url value="/admin/${url}"/>">Cancel</a>
+				</h6>
+			</div>
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table table-bordered"  width="100%"
+						   cellspacing="0">
+						<thead>
+						<c:choose>
+							<c:when test="${ objectDetail != null }">
+								<tr>
+									<th>URL</th>
+									<th>Type</th>
+									<th>Action</th>
+								</tr>
+							</c:when>
+						</c:choose>
+
+						</thead>
+						<tfoot>
+						<c:choose>
+							<c:when test="${ objectDetail != null }">
+								<tr>
+									<th>URL</th>
+									<th>Type</th>
+									<th>Action</th>
+								</tr>
+							</c:when>
+						</c:choose>
+						</tfoot>
+						<tbody>
+						<c:choose>
+							<c:when test="${ objectDetail != null }">
+								<c:forEach var="p" items="${ objectDetail }">
+									<tr>
+										<td>${ p.url }</td>
+										<td>${ p.type}</td>
+										<td style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+											<a href="<c:url value="/admin/product?id=${p.id}&&action=edit"/>" style="width: 80px; border-radius: 6px ">Edit</a>
+											<a href="<c:url value="/admin/product?id=${p.id}&&action=delete"/>" style="width: 80px; border-radius: 6px ">Delete</a>
+										</td>
+									</tr>
+								</c:forEach>
+							</c:when>
+						</c:choose>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
 	</div>
 
 </div>

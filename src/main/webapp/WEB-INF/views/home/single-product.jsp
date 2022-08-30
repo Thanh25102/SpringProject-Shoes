@@ -108,23 +108,23 @@
 							<div class="product-images">
 								<div class="product-main-img">
 									<img
-										src="<c:url value='/template/home/img/shoes/${product.categoryName}/${product.url[0]}'/>"
+										src="${product.url[0]}"
 										alt="">
 								</div>
 
 								<div class="product-gallery">
 									<img
-										src="<c:url value='/template/home/img/shoes/${product.categoryName}/${product.url[0]}'/>"
+										src="${product.url[0]}"
 										alt=""> <img
-										src="<c:url value='/template/home/img/shoes/${product.categoryName}/${product.url[0]}'/>"
+										src="${product.url[0]}"
 										alt=""> <img
-										src="<c:url value='/template/home/img/shoes/${product.categoryName}/${product.url[0]}'/>"
+										src="${product.url[0]}"
 										alt=""> <img
-										src="<c:url value='/template/home/img/shoes/${product.categoryName}/${product.url[0]}'/>"
+										src="${product.url[0]}"
 										alt=""> <img
-										src="<c:url value='/template/home/img/shoes/${product.categoryName}/${product.url[0]}'/>"
+										src="${product.url[0]}"
 										alt=""> <img
-										src="<c:url value='/template/home/img/shoes/${product.categoryName}/${product.url[0]}'/>"
+										src="${product.url[0]}"
 										alt="">
 								</div>
 							</div>
@@ -211,7 +211,7 @@
 								<div class="single-product">
 									<div class="product-f-image" style="padding: 20px 0;">
 										<img
-											src="<c:url value='/template/home/img/shoes/${product.categoryName}/${product.url[0]}'/>"
+											src="${product.url[0]}"
 											alt="">
 										<div class="product-hover">
 											<a href="" class="add-to-cart-link"><i

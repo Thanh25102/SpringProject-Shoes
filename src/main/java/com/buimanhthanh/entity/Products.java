@@ -1,5 +1,7 @@
 package com.buimanhthanh.entity;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 
 import java.io.Serializable;
@@ -41,7 +43,7 @@ public class Products implements Serializable{
     @OneToMany(mappedBy = "products")
     private Set<OrderDetails> orderDetailsSet;
 
-    @OneToMany(mappedBy = "products")
+    @OneToMany(mappedBy = "products",cascade = {CascadeType.ALL})
     private Set<ProductImages> productImagesSet;
 
 

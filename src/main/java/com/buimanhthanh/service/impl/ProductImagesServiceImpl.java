@@ -28,4 +28,5 @@ public class ProductImagesServiceImpl implements ProductImagesService {
 	public List<ProductImagesDTO> getAllProductImageTypeEqualSlide() {
 		return ConvertEntityToDto.convertProductImagesDtos(productImagesDAO.getAllProductImageTypeEqualSlide());
 	}
+
 }

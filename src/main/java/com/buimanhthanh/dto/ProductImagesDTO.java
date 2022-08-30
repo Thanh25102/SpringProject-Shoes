@@ -1,5 +1,7 @@
 package com.buimanhthanh.dto;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ProductImagesDTO {
     private Integer id;
     private Integer productId;
@@ -11,6 +13,16 @@ public class ProductImagesDTO {
     private String thumbnail;
 
     private String price;
+
+    private MultipartFile file;
+
+    public MultipartFile getFile() {
+        return file;
+    }
+
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
 
     public String getPrice() {
         return price;

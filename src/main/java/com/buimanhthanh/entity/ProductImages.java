@@ -1,5 +1,7 @@
 package com.buimanhthanh.entity;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import java.io.Serializable;
 
 import javax.persistence.*;
@@ -23,6 +25,17 @@ public class ProductImages implements Serializable {
 
 	@Column(name = "type")
 	private String type;
+
+	@Transient
+	private MultipartFile file;
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 
 	public String getType() {
 		return type;

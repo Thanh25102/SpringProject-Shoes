@@ -28,7 +28,7 @@
 					<div class="brand-list">
 						<c:forEach var="category" items="${ categories }">
 							<img
-								src="<c:url value="/template/home/img/categories/${category.logo}"/>"
+								src="${category.logo}"
 								alt="">
 						</c:forEach>
 					</div>
@@ -47,7 +47,7 @@
 					<div class="single-shop-product">
 						<div class="product-upper">
 							<img
-								src="<c:url value="/template/home/img/shoes/${product.categoryName}/${product.url[0]}"/>"
+								src="${product.url[0]}"
 								alt="">
 						</div>
 						<h2 style="text-align: center">

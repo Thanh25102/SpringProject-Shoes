@@ -2,21 +2,24 @@ package com.buimanhthanh.service;
 
 import java.util.List;
 
+import com.buimanhthanh.dto.ProductImagesDTO;
 import com.buimanhthanh.dto.ProductsDTO;
 
 public interface ProductsService {
     
-	public List<ProductsDTO> getAllProduct();
+	List<ProductsDTO> getAllProduct();
   
-	public List<ProductsDTO> getTopProductLatest();
+	List<ProductsDTO> getTopProductLatest();
 
-	public List<ProductsDTO> getProductFromCategory(Integer idCategory);
+	List<ProductsDTO> getProductFromCategory(Integer idCategory);
 
-	public List<ProductsDTO> getProductFromCategory(Integer idCategory, Integer page);
+	List<ProductsDTO> getProductFromCategory(Integer idCategory, Integer page);
 
 	public Long countTotalPage(Integer idCategory);
 
 	public ProductsDTO getProduct(Integer id);
 
-	public List<ProductsDTO> getProductFromCategoryLimit(Integer idCategory, Integer limit);
+	List<ProductsDTO> getProductFromCategoryLimit(Integer idCategory, Integer limit);
+
+	List<ProductImagesDTO> getProductImages(Integer id);
 }

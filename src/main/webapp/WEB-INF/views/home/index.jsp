@@ -8,7 +8,7 @@
 		<ul class="" id="bxslider-home4">
 			<c:forEach var="product" items="${slide}">
 				<li><img
-					src="<c:url value="/template/home/img/${product.url}"/>"
+					src="${product.url}"
 					alt="Slide">
 					<div class="caption-group">
 						<h2 class="caption title">
@@ -73,7 +73,7 @@
 							<div class="single-product">
 								<div class="product-f-image" style="padding: 30px 0;">
 									<img
-										src="<c:url value="/template/home/img/shoes/${product.categoryName}/${empty product.url[0] ? 'green.png' : product.url[0]}"/>"
+										src="${empty product.url[0] ? 'https://res.cloudinary.com/com-buimahthanh/image/upload/v1661853220/shoes/shoes/Adidas/green_ddbhva.png' : product.url[0]}"
 										alt="">
 									<div class="product-hover">
 										<a href="#" class="add-to-cart-link"><i

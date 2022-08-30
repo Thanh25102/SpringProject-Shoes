@@ -1,17 +1,14 @@
 package com.buimanhthanh.controller.admin;
 
 import com.buimanhthanh.dto.*;
+import com.buimanhthanh.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.buimanhthanh.service.CategoriesService;
-import com.buimanhthanh.service.CustomerService;
-import com.buimanhthanh.service.ProductsService;
-import com.buimanhthanh.service.StaffService;
-import com.buimanhthanh.service.UserService;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
@@ -74,6 +71,9 @@ public class AdminController {
 				model.addAttribute("objectEdit",productsService.getProduct(id));
 			}else if(action.equals("delete")){
 				model.addAttribute("objectEdit",productsService.getProduct(id));
+			}else if(action.equals("detail")){
+				model.addAttribute("objectEdit",new ProductsDTO());
+				model.addAttribute("objectDetail",productsService.getProductImages(id));
 			}
 		}else	{
 			model.addAttribute("objectEdit",new ProductsDTO());
@@ -144,9 +144,9 @@ public class AdminController {
 	}
 
 	@GetMapping(value = { "/categories" })
-	public String categories(Model model, @RequestParam(required = false,defaultValue = "null") Integer id, @RequestParam(required = false,defaultValue = "null") String action) {
+	public String categories(Model model, @RequestParam(required = false,defaultValue = "-1") Integer id, @RequestParam(required = false,defaultValue = "null") String action) {
 		model.addAttribute("url", "categories");
-		if(!id.equals("null") && !action.equals("null")){
+		if(id != -1 && !action.equals("null")){
 			if(action.equals("edit")){
 				model.addAttribute("objectEdit",categoriesService.getCategories(id));
 			}else if(action.equals("delete")){
@@ -159,6 +159,5 @@ public class AdminController {
 		model.addAttribute("listObject", categoriesService.getAllCategories());
 		return "adminTable";
 	}
-
 
 }
