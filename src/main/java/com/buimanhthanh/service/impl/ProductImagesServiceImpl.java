@@ -29,4 +29,10 @@ public class ProductImagesServiceImpl implements ProductImagesService {
 		return ConvertEntityToDto.convertProductImagesDtos(productImagesDAO.getAllProductImageTypeEqualSlide());
 	}
 
+	@Override
+	@Transactional
+	public ProductImagesDTO getProductImages(Integer id) {
+		return ConvertEntityToDto.convertProductImagesDtos(productImagesDAO.getProductsImage(id));
+	}
+
 }

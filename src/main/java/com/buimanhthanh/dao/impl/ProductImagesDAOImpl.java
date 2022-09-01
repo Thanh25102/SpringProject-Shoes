@@ -34,5 +34,13 @@ public class ProductImagesDAOImpl implements ProductImagesDAO {
 		return theQuery.getResultList();
 	}
 
+	@Override
+	public ProductImages getProductsImage(Integer id) {
+		Session session = sessionFactory.getCurrentSession();
+		Query<ProductImages> theQuery = session.createQuery("from ProductImages pi where pi.id =:i", ProductImages.class);
+		theQuery.setParameter("i", id);
+		return theQuery.getSingleResult();
+	}
+
 
 }

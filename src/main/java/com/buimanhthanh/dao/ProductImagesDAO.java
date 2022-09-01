@@ -9,6 +9,7 @@ public interface ProductImagesDAO {
     
 	List<ProductImages> getAllProductImage();
 	List<ProductImages> getAllProductImageTypeEqualSlide();
+	ProductImages getProductsImage(Integer id);
 
   
 }

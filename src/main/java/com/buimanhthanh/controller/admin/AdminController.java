@@ -22,6 +22,9 @@ public class AdminController {
 	private ProductsService productsService;
 
 	@Autowired
+	private ProductImagesService productImagesService;
+
+	@Autowired
 	private CustomerService customerService;
 
 	@Autowired
@@ -62,43 +65,51 @@ public class AdminController {
 	public String other() {
 		return "adminOther";
 	}
-	
+
 	@GetMapping(value = { "/product" })
-	public String product(Model model, @RequestParam(required = false,defaultValue = "-1") Integer id, @RequestParam(required = false,defaultValue = "null") String action) {
+	public String product(Model model, @RequestParam(required = false, defaultValue = "-1") Integer id,
+			@RequestParam(required = false, defaultValue = "-1") Integer detailId,
+			@RequestParam(required = false, defaultValue = "null") String action,
+			@RequestParam(required = false, defaultValue = "null") String actionDetail) {
 		model.addAttribute("url", "product");
-		if(id != -1 && !action.equals("null")){
-			if(action.equals("edit")){
-				model.addAttribute("objectEdit",productsService.getProduct(id));
-			}else if(action.equals("delete")){
-				model.addAttribute("objectEdit",productsService.getProduct(id));
-			}else if(action.equals("detail")){
-				model.addAttribute("objectEdit",new ProductsDTO());
-				model.addAttribute("objectDetail",productsService.getProductImages(id));
-			}
-		}else	{
-			model.addAttribute("objectEdit",new ProductsDTO());
-		}
 		model.addAttribute("type", "Products");
+		if (id != -1 && !action.equals("null")) {
+			if (action.equals("edit")) {
+				model.addAttribute("objectEdit", productsService.getProduct(id));
+			} else if (action.equals("delete")) {
+				model.addAttribute("objectEdit", productsService.getProduct(id));
+			} else if (action.equals("detail")) {
+				model.addAttribute("objectEdit", new ProductsDTO());
+				model.addAttribute("objectDetail", productsService.getProductImages(id));
+				if (actionDetail.equals("editDetail") && detailId != -1) {
+					model.addAttribute("type", "ProductImage");
+					model.addAttribute("objectEdit", productImagesService.getProductImages(detailId));
+				}
+			}
+		} else {
+			model.addAttribute("objectEdit", new ProductsDTO());
+		}
 		List<String> categories = new ArrayList<>();
-		categoriesService.getAllCategories().forEach(c->{
+		categoriesService.getAllCategories().forEach(c -> {
 			categories.add(c.getName());
 		});
-		model.addAttribute("categories",categories);
+		model.addAttribute("categories", categories);
 		model.addAttribute("listObject", productsService.getAllProduct());
 		return "adminTable";
 	}
 
 	@GetMapping(value = { "/customer" })
-	public String customer(Model model, @RequestParam(required = false,defaultValue = "-1") Integer id, @RequestParam(required = false,defaultValue = "null") String action) {
+	public String customer(Model model, @RequestParam(required = false, defaultValue = "-1") Integer id,
+			@RequestParam(required = false, defaultValue = "null") String action) {
 		model.addAttribute("url", "customer");
-		if(id != -1 && !action.equals("null")){
-			if(action.equals("edit")){
-				model.addAttribute("objectEdit",customerService.getCustomer(id));
-			}else if(action.equals("delete")){
-				model.addAttribute("objectEdit",customerService.getCustomer(id));
+		if (id != -1 && !action.equals("null")) {
+			if (action.equals("edit")) {
+				model.addAttribute("objectEdit", customerService.getCustomer(id));
+			} else if (action.equals("delete")) {
+				model.addAttribute("objectEdit", customerService.getCustomer(id));
 			}
-		}else	{
-			model.addAttribute("objectEdit",new CustomersDTO());
+		} else {
+			model.addAttribute("objectEdit", new CustomersDTO());
 		}
 		model.addAttribute("type", "Customers");
 		model.addAttribute("listObject", customerService.getAllCustomer());
@@ -106,16 +117,17 @@ public class AdminController {
 	}
 
 	@GetMapping(value = { "/staff" })
-	public String staff(Model model, @RequestParam(required = false,defaultValue = "-1") Integer id, @RequestParam(required = false,defaultValue = "null") String action) {
+	public String staff(Model model, @RequestParam(required = false, defaultValue = "-1") Integer id,
+			@RequestParam(required = false, defaultValue = "null") String action) {
 		model.addAttribute("url", "staff");
-		if(id != -1 && !action.equals("null")){
-			if(action.equals("edit")){
-				model.addAttribute("objectEdit",staffService.getStaff(id));
-			}else if(action.equals("delete")){
-				model.addAttribute("objectEdit",staffService.getStaff(id));
+		if (id != -1 && !action.equals("null")) {
+			if (action.equals("edit")) {
+				model.addAttribute("objectEdit", staffService.getStaff(id));
+			} else if (action.equals("delete")) {
+				model.addAttribute("objectEdit", staffService.getStaff(id));
 			}
-		}else	{
-			model.addAttribute("objectEdit",new StaffDTO());
+		} else {
+			model.addAttribute("objectEdit", new StaffDTO());
 		}
 		model.addAttribute("type", "Staff");
 		model.addAttribute("listObject", staffService.getAllStaff());
@@ -123,37 +135,39 @@ public class AdminController {
 	}
 
 	@GetMapping(value = { "/user" })
-	public String user(Model model, @RequestParam(required = false,defaultValue = "null") String id, @RequestParam(required = false,defaultValue = "null") String action) {
+	public String user(Model model, @RequestParam(required = false, defaultValue = "null") String id,
+			@RequestParam(required = false, defaultValue = "null") String action) {
 		model.addAttribute("url", "user");
-		if(!id.equals("null") && !action.equals("null")){
-			if(action.equals("edit")){
-				model.addAttribute("objectEdit",userService.getUsers(id));
-			}else if(action.equals("delete")){
-				model.addAttribute("objectEdit",new UsersDTO());
+		if (!id.equals("null") && !action.equals("null")) {
+			if (action.equals("edit")) {
+				model.addAttribute("objectEdit", userService.getUsers(id));
+			} else if (action.equals("delete")) {
+				model.addAttribute("objectEdit", new UsersDTO());
 			}
-		}else	{
-			model.addAttribute("objectEdit",new UsersDTO());
+		} else {
+			model.addAttribute("objectEdit", new UsersDTO());
 		}
 		List<Boolean> active = new ArrayList<>();
 		active.add(true);
 		active.add(false);
-		model.addAttribute("active",active);
+		model.addAttribute("active", active);
 		model.addAttribute("type", "User");
 		model.addAttribute("listObject", userService.getAllUsers());
 		return "adminTable";
 	}
 
 	@GetMapping(value = { "/categories" })
-	public String categories(Model model, @RequestParam(required = false,defaultValue = "-1") Integer id, @RequestParam(required = false,defaultValue = "null") String action) {
+	public String categories(Model model, @RequestParam(required = false, defaultValue = "-1") Integer id,
+			@RequestParam(required = false, defaultValue = "null") String action) {
 		model.addAttribute("url", "categories");
-		if(id != -1 && !action.equals("null")){
-			if(action.equals("edit")){
-				model.addAttribute("objectEdit",categoriesService.getCategories(id));
-			}else if(action.equals("delete")){
-				model.addAttribute("objectEdit",new CategoriesDTO());
+		if (id != -1 && !action.equals("null")) {
+			if (action.equals("edit")) {
+				model.addAttribute("objectEdit", categoriesService.getCategories(id));
+			} else if (action.equals("delete")) {
+				model.addAttribute("objectEdit", new CategoriesDTO());
 			}
-		}else	{
-			model.addAttribute("objectEdit",new CategoriesDTO());
+		} else {
+			model.addAttribute("objectEdit", new CategoriesDTO());
 		}
 		model.addAttribute("type", "Categories");
 		model.addAttribute("listObject", categoriesService.getAllCategories());

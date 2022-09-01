@@ -218,7 +218,8 @@
 			</div>
 		</div>
 	</div>
-	<div id="overlay_formCustom" ${param.id != null && param.action == 'edit' ? "style='display: flex;'" : ""} ${param.id != null && param.action == 'delete' ? "style='display: none;'": ""}  ${param.id == null && param.action == "add" ? "style='display: flex;'": ""}  ${param.id == null && param.action == null ? "style='display: none;'": ""}>
+	<div id="overlay_formCustom" ${param.id != null && param.action == 'edit' ? "style='display: flex;'" : ""} ${param.id != null && param.action == 'delete' ? "style='display: none;'": ""}  ${param.id == null && param.action == "add" ? "style='display: flex;'": ""}
+	${param.id == null && param.action == null ? "style='display: none;'": ""} ${param.id !=null && param.actionDetail =='editDetail' && param.detailId!=null ? "style='display: flex;'" : ""}	>
 		<section class="vh-100 customer-form-add">
 				<div class="container py-5 h-100">
 				<div class="row justify-content-center align-items-center h-100">
@@ -473,6 +474,30 @@
 											</div>
 										</form:form>
 									</c:when>
+									<c:when test="${type eq 'ProductImage'}">
+										<c:url value="/admin/product" var="urlProduct"/>
+										<form:form action="${urlProduct}" modelAttribute="objectEdit">
+											<div class="row">
+												<div class="col-md-12 col-xl-12  mb-8">
+													<div class="form-outline">
+														<form:input type="text" id="thumbnailCategory" class="form-control form-control-lg" path="type" />
+														<label class="form-label" for="thumbnailCategory">Type</label>
+													</div>
+												</div>
+												<div class="col-md-12 col-xl-12  mb-8">
+													<div class="form-outline">
+														<form:input type="file" id="thumbnailCategory" class="form-control form-control-lg" path="file" />
+														<label class="form-label" for="thumbnailCategory">Upload Image</label>
+													</div>
+												</div>
+											</div>
+
+											<div class="mt-4 pt-2">
+												<input class="btn btn-primary btn-lg" type="submit" value="Submit"/>
+											</div>
+										</form:form>
+									</c:when>
+								
 								</c:choose>
 								<%--<form>
 									<div class="row">
@@ -626,12 +651,15 @@
 						<c:choose>
 							<c:when test="${ objectDetail != null }">
 								<c:forEach var="p" items="${ objectDetail }">
-									<tr>
-										<td>${ p.url }</td>
+									<tr class="flex__items">
+										<td>
+											<img src="${ p.url }" alt="" />
+										</td>
 										<td>${ p.type}</td>
-										<td style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
-											<a href="<c:url value="/admin/product?id=${p.id}&&action=edit"/>" style="width: 80px; border-radius: 6px ">Edit</a>
-											<a href="<c:url value="/admin/product?id=${p.id}&&action=delete"/>" style="width: 80px; border-radius: 6px ">Delete</a>
+										<td>
+											<a href="<c:url value="/admin/product?id=${p.id}&&action=detail&&actionDetail=editDetail&&detailId=${p.id}"/>" style="width: 80px; border-radius: 6px ">Edit</a>
+											<a href="<c:url value="/admin/product?id=${p.id}&&action=detail"/>">click</a>
+											<a href="<c:url value="/admin/product?id=${p.id}&&action=deleteDetail&&detailId=${p.id}"/>" style="width: 80px; border-radius: 6px ">Delete</a>
 										</td>
 									</tr>
 								</c:forEach>
@@ -644,6 +672,7 @@
 		</div>
 	</div>
 
+	
 </div>
 
 <!-- /.container-fluid -->

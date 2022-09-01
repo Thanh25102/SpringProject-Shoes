@@ -7,5 +7,6 @@ import com.buimanhthanh.dto.ProductImagesDTO;
 public interface ProductImagesService {
 	List<ProductImagesDTO> getAllProductImage();
 	List<ProductImagesDTO> getAllProductImageTypeEqualSlide();
+	ProductImagesDTO getProductImages(Integer id);
 
 }
